@@ -1,14 +1,22 @@
+# Build application fiels
+/build/
+/*/build
+
+# Local configuration files (sdk path, etc)
+local.properties
+
+# Gradle generated files
+.gragle/
+gradle/
+gradlew
+gradlew.bat
+
+# User-specific configurations
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+
+# OS-specific configurations
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+
+# git
+
