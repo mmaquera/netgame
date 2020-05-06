@@ -9,4 +9,6 @@
     <string name="last_name">Apellido</string>
     <string name="sign_in">Ingresar</string>
     <string name="sign_up">Registrar</string>
+    <string name="password">Contraseña</string>
+    <string name="log_in">Iniciar session</string>
 </resources>
