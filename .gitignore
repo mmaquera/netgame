@@ -6,7 +6,7 @@
 local.properties
 
 # Gradle generated files
-.gragle
+.gragle/
 gradle/
 gradlew
 gradlew.bat
