@@ -9,9 +9,6 @@ import android.view.ViewGroup
 
 import com.mmaquera.netgame.R
 
-/**
- * A simple [Fragment] subclass.
- */
 class SignUpFragment : Fragment() {
 
     override fun onCreateView(
