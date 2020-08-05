@@ -1,5 +1,6 @@
 package com.mmaquera.netgame.di.subcomponents
 
+import com.mmaquera.netgame.view.login.LoginActivity
 import com.mmaquera.netgame.view.login.signin.SignInFragment
 import com.mmaquera.netgame.view.login.signup.SignUpFragment
 import dagger.Subcomponent
@@ -12,6 +13,7 @@ interface LoginComponent {
         fun create(): LoginComponent
     }
 
+    fun inject(activity: LoginActivity)
     fun inject(fragment: SignInFragment)
     fun inject(fragment: SignUpFragment)
 }

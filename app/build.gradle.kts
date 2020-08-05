@@ -63,4 +63,6 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:${Versions.retrofit2}")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}")
 }

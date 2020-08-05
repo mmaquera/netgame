@@ -2,15 +2,15 @@ package com.mmaquera.netgame.application
 
 import android.app.Application
 import com.mmaquera.netgame.di.component.AppComponent
+import com.mmaquera.netgame.di.component.DaggerAppComponent
 
-class AppApplication : Application(){
+open class AppApplication : Application() {
 
-    private lateinit var appComponent: AppComponent
-
-    override fun onCreate() {
-        super.onCreate()
+    val appComponent: AppComponent by lazy {
+        initializeComponent()
     }
 
-    private fun initInjection(){
+    open fun initializeComponent(): AppComponent {
+        return DaggerAppComponent.factory().create(applicationContext)
     }
 }
