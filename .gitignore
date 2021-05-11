@@ -6,7 +6,8 @@
 local.properties
 
 # Gradle generated files
-.gragle/
+.gradle/
+.gragle/*
 gradle/
 gradlew
 gradlew.bat
@@ -18,5 +19,4 @@ gradlew.bat
 # OS-specific configurations
 .DS_Store
 
-# git
 

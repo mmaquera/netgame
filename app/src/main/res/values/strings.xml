@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">netgame</string>
     <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">Usuario</string>
+    <string name="name">Nombre</string>
+    <string name="last_name">Apellido</string>
+    <string name="sign_in">Ingresar</string>
+    <string name="sign_up">Registrar</string>
+    <string name="password">Contraseña</string>
+    <string name="log_in">Iniciar session</string>
+    <string name="register_uppercase">REGISTRO</string>
+    <string name="create_account">Crear cuenta</string>
 </resources>
