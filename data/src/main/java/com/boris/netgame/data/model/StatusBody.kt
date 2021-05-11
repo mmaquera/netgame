@@ -1,4 +1,4 @@
-package com.mmaquera.netgame.data.model
+package com.boris.netgame.data.model
 
 class StatusBody(
     val code: String,

@@ -1,16 +1,7 @@
 package com.mmaquera.netgame.application
 
 import android.app.Application
-import com.mmaquera.netgame.di.component.AppComponent
-import com.mmaquera.netgame.di.component.DaggerAppComponent
+import dagger.hilt.android.HiltAndroidApp
 
-open class AppApplication : Application() {
-
-    val appComponent: AppComponent by lazy {
-        initializeComponent()
-    }
-
-    open fun initializeComponent(): AppComponent {
-        return DaggerAppComponent.factory().create(applicationContext)
-    }
-}
+@HiltAndroidApp
+class AppApplication : Application()

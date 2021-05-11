@@ -1,6 +1,6 @@
-package com.mmaquera.netgame.data.model
+package com.boris.netgame.data.model
 
-class Token(
+class Credentials(
     val tokenAccess: String,
     val expireIn: Int,
     val typeUser: Int,

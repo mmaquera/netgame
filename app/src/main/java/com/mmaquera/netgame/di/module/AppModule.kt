@@ -1,13 +1,11 @@
 package com.mmaquera.netgame.di.module
 
-import androidx.lifecycle.ViewModelProvider
-import com.mmaquera.netgame.viewmodel.ViewModelFactory
-import dagger.Binds
-import dagger.Module
-
+/*
 @Module
-abstract class AppModule{
+class AppModule {
 
-    @Binds
-    abstract fun bindViewModelFactory(factory: ViewModelFactory) : ViewModelProvider.Factory
-}
+    @Provides
+    fun remoteDataSourceProvides(apiService: APIService): RemoteDataSource =
+        ApiDataSource(apiService)
+
+}*/
