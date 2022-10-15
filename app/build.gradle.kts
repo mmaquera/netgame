@@ -8,12 +8,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion(29)
-    buildToolsVersion("29.0.3")
+    compileSdk = 31
+    buildToolsVersion = "30.0.3"
     defaultConfig {
         applicationId = "com.mmaquera.netgame"
-        minSdkVersion(19)
-        targetSdkVersion(29)
+        minSdk = 19
+        targetSdk = 31
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -59,7 +59,6 @@ dependencies {
     /*
     implementation ("androidx.activity:activity-ktx:1.2.3")
     implementation("androidx.fragment:fragment-ktx:1.3.3")*/
-
     /*
     testImplementation("junit:junit:4.13")
     androidTestImplementation("androidx.test:runner:1.2.0")
