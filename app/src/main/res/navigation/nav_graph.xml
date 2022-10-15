@@ -2,4 +2,16 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph" />
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_graph_login">
+    <include app:graph="@navigation/nav_graph_login" >
+        <action
+            android:id="@+id/action_global_mainActivity"
+            app:destination="@id/mainActivity" />
+    </include>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.mmaquera.netgame.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+</navigation>

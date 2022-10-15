@@ -11,4 +11,6 @@
     <string name="sign_up">Registrar</string>
     <string name="password">Contraseña</string>
     <string name="log_in">Iniciar session</string>
+    <string name="register_uppercase">REGISTRO</string>
+    <string name="create_account">Crear cuenta</string>
 </resources>
