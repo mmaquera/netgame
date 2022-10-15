@@ -1,14 +1,14 @@
 package com.boris.netgame.data.mapper
 
 import com.boris.netgame.domain.Token
-import com.boris.netgame.data.model.Credentials
-import com.boris.netgame.data.model.Response
+import com.boris.netgame.data.model.response.Credentials
+import com.boris.netgame.data.model.response.Base
 
-fun Response<Credentials>.toToken(): Token {
+fun Credentials.toToken(): Token {
     return Token(
-        tokenAccess = data.tokenAccess,
-        expireIn = data.expireIn,
-        typeUser = data.typeUser,
-        status = data.status
+        tokenAccess = tokenAccess,
+        expireIn = expireIn,
+        typeUser = typeUser,
+        status = status
     )
 }

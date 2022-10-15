@@ -89,6 +89,7 @@
             app:layout_constraintTop_toBottomOf="@id/optionsLoginBarrier">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userNameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white" />
@@ -110,6 +111,7 @@
             app:layout_constraintTop_toBottomOf="@id/textInputUserName">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white" />
