@@ -8,7 +8,6 @@ local.properties
 # Gradle generated files
 .gradle/
 .gragle/*
-gradle/
 gradlew
 gradlew.bat
 
