@@ -12,7 +12,7 @@ android {
     buildToolsVersion = "30.0.3"
     defaultConfig {
         applicationId = "com.mmaquera.netgame"
-        minSdk = 19
+        minSdk = 21
         targetSdk = 31
         versionCode = 1
         versionName = "1.0"
@@ -32,6 +32,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose = true
     }
 
     compileOptions {
@@ -41,6 +42,10 @@ android {
 
     kotlinOptions{
         jvmTarget = "1.8"
+    }
+
+    composeOptions{
+        kotlinCompilerExtensionVersion = "1.3.2"
     }
 }
 
@@ -79,4 +84,14 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}")
+
+    //implementations for compose
+    implementation("androidx.activity:activity-compose:1.5.1")
+    implementation("androidx.compose.material:material:1.2.1")
+    implementation("androidx.compose.animation:animation:1.2.1")
+    implementation("androidx.compose.ui:ui-tooling:1.2.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
+
+    implementation("com.google.accompanist:accompanist-appcompat-theme:0.25.1")
+
 }
