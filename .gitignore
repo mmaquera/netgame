@@ -3,12 +3,12 @@
 /*/build
 
 # Local configuration files (sdk path, etc)
-local.properties
+#local.properties
 
 # Gradle generated files
 .gradle/
 .gragle/*
-gradle/
+#gradle/
 gradlew
 gradlew.bat
 

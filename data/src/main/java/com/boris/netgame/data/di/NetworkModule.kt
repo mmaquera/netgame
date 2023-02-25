@@ -34,7 +34,7 @@ object NetworkModule {
     ): Retrofit {
         return Retrofit
             .Builder()
-            .baseUrl("http://192.168.1.14:3000")
+            .baseUrl("http://192.168.31.104:3000")
             .client(okHttpClient)
             .addConverterFactory(gsonConverterFactory)
             .build()

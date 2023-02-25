@@ -18,8 +18,8 @@ android {
 }
 
 dependencies {
-    implementation(fileTree("libs") { include("*.jar") })
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}")
+    //implementation(fileTree("libs") { include("*.jar") })
+    //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}")
     implementation(project(":domain"))
 
     /*implementation("androidx.activity:activity-ktx:1.2.2")
@@ -31,7 +31,7 @@ dependencies {
     implementation("com.google.dagger:hilt-android:${Versions.daggerHilt}")
     kapt("com.google.dagger:hilt-android-compiler:${Versions.daggerHilt}")
 
-    api("com.squareup.retrofit2:retrofit:${Versions.retrofit2}")
-    api("com.squareup.retrofit2:converter-gson:${Versions.retrofit2}")
+    api("com.squareup.retrofit2:retrofit:2.9.0")
+    api("com.squareup.retrofit2:converter-gson:2.9.0")
     api("com.squareup.okhttp3:logging-interceptor:4.9.1")
 }
