@@ -9,6 +9,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -16,11 +18,10 @@ import javax.inject.Inject
 @HiltViewModel
 class SignInViewModel @Inject constructor(
     private val authenticationUseCase: AuthenticationUseCase
-) :
-    ViewModel() {
+) : ViewModel() {
 
     private val _viewState = MutableStateFlow<SignInViewState>(SignInViewState.HideLoading)
-    val viewState: StateFlow<SignInViewState> = _viewState
+    val viewState: StateFlow<SignInViewState> = _viewState.asStateFlow()
 
     fun process(event: SignInEvent) {
         when (event) {
@@ -32,17 +33,20 @@ class SignInViewModel @Inject constructor(
         viewModelScope.launch {
             _viewState.value = SignInViewState.ShowLoading
 
-            val result = withContext(Dispatchers.IO) {
-                authenticationUseCase(username, password)
-            }
-
-            when (result) {
-                AuthenticationResult.AnotherError -> _viewState.value = SignInViewState.AnotherError
-                AuthenticationResult.Authorization -> _viewState.value =
-                    SignInViewState.Authorization
-                is AuthenticationResult.Denied -> _viewState.value =
-                    SignInViewState.Error(result.message)
-            }
+            authenticationUseCase(username, password)
+                .collect { authentication ->
+                    when (authentication) {
+                        AuthenticationResult.Authorization -> {
+                            _viewState.value = SignInViewState.Authorization
+                        }
+                        is AuthenticationResult.Denied -> {
+                            _viewState.value = SignInViewState.Error(authentication.message)
+                        }
+                        AuthenticationResult.AnotherError -> {
+                            _viewState.value = SignInViewState.AnotherError
+                        }
+                    }
+                }
 
             _viewState.value = SignInViewState.HideLoading
         }
