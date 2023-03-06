@@ -8,12 +8,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion(29)
-    buildToolsVersion("29.0.3")
+    compileSdk = 33
     defaultConfig {
         applicationId = "com.mmaquera.netgame"
-        minSdkVersion(19)
-        targetSdkVersion(29)
+        minSdk = 21
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -32,6 +31,11 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.3.2"
     }
 
     compileOptions {
@@ -45,13 +49,10 @@ android {
 }
 
 dependencies {
-    implementation(fileTree("libs") { include("*.jar") })
-
     implementation(project(":domain"))
     implementation(project(":data"))
     implementation(project(":usecases"))
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}")
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("androidx.core:core-ktx:1.3.2")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
@@ -59,7 +60,6 @@ dependencies {
     /*
     implementation ("androidx.activity:activity-ktx:1.2.3")
     implementation("androidx.fragment:fragment-ktx:1.3.3")*/
-
     /*
     testImplementation("junit:junit:4.13")
     androidTestImplementation("androidx.test:runner:1.2.0")
@@ -79,5 +79,22 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+
+    //compose
+    val composeBom = platform("androidx.compose:compose-bom:2022.12.00")
+    implementation(composeBom)
+    implementation("androidx.compose.material:material:1.3.1")
+    //implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.navigation:navigation-compose:2.5.3")
+
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+
+    // For Preview
+    implementation("androidx.compose.ui:ui-tooling-preview:1.3.3")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.3.3")
+    // Optional - Integration with activities
+    implementation("androidx.activity:activity-compose:1.5.1")
+
 }

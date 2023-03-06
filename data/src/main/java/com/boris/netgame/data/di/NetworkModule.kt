@@ -1,6 +1,6 @@
 package com.boris.netgame.data.di
 
-import com.boris.netgame.data.server.APIService
+import com.boris.netgame.data.server.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,7 +34,7 @@ object NetworkModule {
     ): Retrofit {
         return Retrofit
             .Builder()
-            .baseUrl("http://192.168.1.16:3000")
+            .baseUrl("http://192.168.31.104:3000")
             .client(okHttpClient)
             .addConverterFactory(gsonConverterFactory)
             .build()
@@ -42,5 +42,5 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideAPIService(retrofit: Retrofit) = retrofit.create(APIService::class.java)
+    fun provideAPIService(retrofit: Retrofit) = retrofit.create(ApiService::class.java)
 }
