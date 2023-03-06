@@ -89,6 +89,9 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.navigation:navigation-compose:2.5.3")
 
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+
+    // For Preview
     implementation("androidx.compose.ui:ui-tooling-preview:1.3.3")
     debugImplementation("androidx.compose.ui:ui-tooling:1.3.3")
     // Optional - Integration with activities
