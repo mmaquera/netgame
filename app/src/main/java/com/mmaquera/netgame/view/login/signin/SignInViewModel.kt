@@ -2,53 +2,71 @@ package com.mmaquera.netgame.view.login.signin
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.boris.netgame.domain.result.AuthenticationResult
+import com.boris.netgame.domain.result.SignInResult
 import com.boris.netgame.usecases.AuthenticationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+@OptIn(FlowPreview::class)
 @HiltViewModel
 class SignInViewModel @Inject constructor(
     private val authenticationUseCase: AuthenticationUseCase
 ) : ViewModel() {
 
-    private val _viewState = MutableStateFlow<SignInViewState>(SignInViewState.HideLoading)
-    val viewState: StateFlow<SignInViewState> = _viewState.asStateFlow()
+    private val intentFlow = MutableSharedFlow<SignInIntent>()
 
-    fun process(event: SignInEvent) {
-        when (event) {
-            is SignInEvent.DoLogin -> doLogin(event.userName, event.password)
+    private val _uiState = MutableStateFlow<SignInUiState>(SignInUiState.Render)
+    val uiState: StateFlow<SignInUiState> = _uiState.asStateFlow()
+
+    private val _effect = Channel<SignInEffect>(Channel.BUFFERED)
+    val effect = _effect.receiveAsFlow()
+
+    init {
+        viewModelScope.launch {
+            intentFlow
+                .map { intent -> intent.mapToAction() }
+                .flatMapMerge { action -> processAction(action) }
+                .map { result -> signInReduceState(result) }
+                .collect {
+                    if (it is SignInUiState.Authenticate){
+                        _effect.send(SignInEffect.GoToMain)
+                    } else{
+                        _uiState.value = it
+                    }
+                }
         }
     }
 
-    private fun doLogin(username: String, password: String) {
+    private fun processAction(signInAction: SignInAction): Flow<SignInResult> {
+        return when (signInAction) {
+            is SignInAction.Authenticate -> authenticationUseCase.invoke(
+                username = signInAction.username,
+                password = signInAction.password
+            )
+        }
+    }
+
+    private fun signInReduceState(result: SignInResult): SignInUiState {
+        return when (result) {
+            SignInResult.AuthenticationResult.Authorization -> SignInUiState.Authenticate
+            is SignInResult.AuthenticationResult.Denied -> SignInUiState.Render
+            SignInResult.AuthenticationResult.AnotherError -> SignInUiState.Error("hola")
+        }
+    }
+
+    fun signInIntent(intent: SignInIntent) {
         viewModelScope.launch {
-            _viewState.value = SignInViewState.ShowLoading
+            intentFlow.emit(intent)
+        }
+    }
 
-            authenticationUseCase(username, password)
-                .collect { authentication ->
-                    when (authentication) {
-                        AuthenticationResult.Authorization -> {
-                            _viewState.value = SignInViewState.Authorization
-                        }
-                        is AuthenticationResult.Denied -> {
-                            _viewState.value = SignInViewState.Error(authentication.message)
-                        }
-                        AuthenticationResult.AnotherError -> {
-                            _viewState.value = SignInViewState.AnotherError
-                        }
-                    }
-                }
-
-            _viewState.value = SignInViewState.HideLoading
+    fun goToMainEvent(effect: SignInEffect) {
+        viewModelScope.launch {
+            _effect.send(effect)
         }
     }
 }

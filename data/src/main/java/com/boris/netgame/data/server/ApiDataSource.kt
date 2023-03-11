@@ -14,8 +14,8 @@ class ApiDataSource @Inject constructor(private val apiService: ApiService) : Au
             val result = apiService.authorize(Authorize(userName = username,password = password))
 
             return when(result.statusBody.code){
-                Code.SUCCESS -> ResultType.Success(data = result.data)
-                Code.ERROR -> ResultType.Error(error = result.statusBody.message)
+                Code.SUCCESS.ordinal -> ResultType.Success(data = result.data)
+                else -> ResultType.Error(error = result.statusBody.message)
             }
         }catch (e: Exception) {
             ResultType.AnotherError(e)

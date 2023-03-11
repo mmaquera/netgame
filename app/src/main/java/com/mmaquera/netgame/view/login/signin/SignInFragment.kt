@@ -33,7 +33,7 @@ class SignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(binding) {
+        /*with(binding) {
             signUpTextView.setOnClickListener {
                 findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment())
             }
@@ -49,10 +49,10 @@ class SignInFragment : Fragment() {
 
         lifecycleScope.launchWhenCreated {
             viewModel.viewState.collect(::render)
-        }
+        }*/
     }
 
-    private fun render(viewState: SignInViewState) {
+    /*private fun render(viewState: SignInViewState) {
         when (viewState) {
             SignInViewState.AnotherError -> {
             }
@@ -65,6 +65,6 @@ class SignInFragment : Fragment() {
             SignInViewState.ShowLoading -> {
             }
         }
-    }
+    }*/
 
 }
