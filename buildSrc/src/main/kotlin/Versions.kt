@@ -1,5 +1,5 @@
 object Versions {
-    const val kotlin = "1.7.20"
+    const val kotlin = "1.8.10"
     const val navVersion = "2.5.2"
     const val retrofit2 = "2.9.0"
     const val lifecycle = "2.5.1"

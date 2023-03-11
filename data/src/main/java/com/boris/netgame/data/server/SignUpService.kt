@@ -1,12 +1,7 @@
 package com.boris.netgame.data.server
 
-import com.boris.netgame.data.model.ResultType
-import com.boris.netgame.data.model.request.Register
-import com.boris.netgame.data.model.response.Code
-import com.boris.netgame.data.source.SignUpDataSource
-import javax.inject.Inject
 
-class SignUpService @Inject constructor(private val apiService: ApiService) : SignUpDataSource {
+/*class SignUpService @Inject constructor(private val apiService: ApiService) : SignUpDataSource {
 
     override suspend fun signUp(userName: String, password: String): ResultType<Unit> {
         return try {
@@ -20,4 +15,4 @@ class SignUpService @Inject constructor(private val apiService: ApiService) : Si
             ResultType.AnotherError(e)
         }
     }
-}
+}*/

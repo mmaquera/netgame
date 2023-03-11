@@ -10,8 +10,9 @@ import javax.inject.Inject
 
 class AuthenticateRepository @Inject constructor(private val remoteDataSource: AuthenticateDataSource) {
 
-    fun signIn(userName: String, password: String): Flow<ResultType<Token>> = flow {
-        when (val result = remoteDataSource.authenticate(userName, password)) {
+    fun signIn(userName: String, password: String) = flow {
+        val result = remoteDataSource.authenticate(userName, password)
+        when (result) {
             is ResultType.AnotherError -> emit(ResultType.AnotherError(result.e))
             is ResultType.Error -> emit(ResultType.Error(result.error))
             is ResultType.Success -> emit(ResultType.Success(result.data.toToken()))

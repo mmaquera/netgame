@@ -1,6 +1,6 @@
 package com.boris.netgame.usecases
 
-import com.boris.netgame.data.model.ResultType
+/*import com.boris.netgame.data.model.ResultType
 import com.boris.netgame.data.repository.SignUpRepository
 import com.boris.netgame.domain.result.SignUpResult
 import javax.inject.Inject
@@ -14,4 +14,4 @@ class SignUpUseCase @Inject constructor(private val repository: SignUpRepository
             is ResultType.Success -> SignUpResult.SignUpSuccess
         }
     }
-}
+}*/

@@ -1,5 +1,5 @@
 package com.boris.netgame.data.repository
-
+/*
 import com.boris.netgame.data.model.ResultType
 import com.boris.netgame.data.source.SignUpDataSource
 import com.boris.netgame.domain.result.SignUpResult
@@ -14,4 +14,4 @@ class SignUpRepository @Inject constructor(private val signUpDataSource: SignUpD
             is ResultType.Success -> ResultType.Success(SignUpResult.SignUpSuccess)
         }
     }
-}
+}*/

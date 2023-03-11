@@ -2,19 +2,25 @@ package com.boris.netgame.usecases
 
 import com.boris.netgame.data.model.ResultType
 import com.boris.netgame.data.repository.AuthenticateRepository
-import com.boris.netgame.domain.result.AuthenticationResult
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import com.boris.netgame.domain.result.SignInResult
+import com.boris.netgame.usecases.di.IoDispatcher
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class AuthenticationUseCase @Inject constructor(private val authenticateRepository: AuthenticateRepository) {
+class AuthenticationUseCase @Inject constructor(
+    private val authenticateRepository: AuthenticateRepository,
+    @IoDispatcher private val coroutineDispatcher: CoroutineDispatcher
+) {
 
-    suspend operator fun invoke(username: String, password: String): Flow<AuthenticationResult> = flow {
-        when (val result = authenticateRepository.signIn(username, password)) {
-            is ResultType.Success<*> -> emit(AuthenticationResult.Authorization)
-            is ResultType.Error<*> -> emit(AuthenticationResult.Denied(result.error))
-            is ResultType.AnotherError<*> -> emit(AuthenticationResult.AnotherError)
-            //else -> emit(AuthenticationResult.AnotherError)
+    operator fun invoke(username: String, password: String) = authenticateRepository.signIn(
+        userName = username, password = password
+    ).map { result ->
+        return@map when (result) {
+            is ResultType.Success -> SignInResult.AuthenticationResult.Authorization
+            is ResultType.Error -> SignInResult.AuthenticationResult.Denied(result.error)
+            is ResultType.AnotherError -> SignInResult.AuthenticationResult.AnotherError
         }
-    }
+    }.flowOn(context = coroutineDispatcher)
 }

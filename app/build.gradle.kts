@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-android-extensions")
+    //id("kotlin-android-extensions")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
@@ -35,7 +35,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = "1.4.2"
     }
 
     compileOptions {
@@ -43,7 +43,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    kotlinOptions{
+    kotlinOptions {
         jvmTarget = "1.8"
     }
 }
@@ -71,6 +71,7 @@ dependencies {
     implementation("com.google.dagger:hilt-android:${Versions.daggerHilt}")
     kapt("com.google.dagger:hilt-android-compiler:${Versions.daggerHilt}")
 
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     /*
     implementation("com.squareup.retrofit2:retrofit:${Versions.retrofit2}")
@@ -88,13 +89,18 @@ dependencies {
     //implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.ui:ui")
     implementation("androidx.navigation:navigation-compose:2.5.3")
-
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
 
     // For Preview
-    implementation("androidx.compose.ui:ui-tooling-preview:1.3.3")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.3.3")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
     // Optional - Integration with activities
-    implementation("androidx.activity:activity-compose:1.5.1")
+    implementation("androidx.activity:activity-compose:1.6.1")
+
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.0")
+
+    //for system ui controller - compose
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.28.0")
 
 }

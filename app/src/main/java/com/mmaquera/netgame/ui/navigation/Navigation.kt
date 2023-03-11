@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.mmaquera.netgame.ui.screen.LoginScreen
+import com.mmaquera.netgame.view.login.signin.LoginScreen
 import com.mmaquera.netgame.ui.screen.MainScreen
 
 @Composable
@@ -21,7 +21,10 @@ fun Navigation() {
             }
         }
         composable("main") {
-            MainScreen()
+            MainScreen {
+                navController.popBackStack()
+                //navController.navigate("login")
+            }
         }
     }
 }

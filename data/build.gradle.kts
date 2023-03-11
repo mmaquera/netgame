@@ -34,4 +34,6 @@ dependencies {
     api("com.squareup.retrofit2:retrofit:2.9.0")
     api("com.squareup.retrofit2:converter-gson:2.9.0")
     api("com.squareup.okhttp3:logging-interceptor:4.9.1")
+
+    implementation("io.arrow-kt:arrow-core:1.1.5")
 }

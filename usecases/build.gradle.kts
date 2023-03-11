@@ -23,4 +23,6 @@ dependencies {
 
     implementation("com.google.dagger:hilt-android:${Versions.daggerHilt}")
     kapt("com.google.dagger:hilt-android-compiler:${Versions.daggerHilt}")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 }
