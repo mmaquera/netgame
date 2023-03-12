@@ -1,8 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.NetGame" parent="android:Theme.Material.Light.NoActionBar">
+    <style name="Theme.NetGame" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.Splash" parent="Theme.NetGame">
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:statusBarColor">@color/white_smoke</item>
     </style>
-    
+
+    <!-- Old styles -->
+
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -16,11 +22,6 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-        <item name="colorPrimaryDark">@color/white_smoke</item>
-    </style>
-
-    <style name="AppTheme.Splash" parent="AppTheme">
-        <item name="android:windowBackground">@drawable/splash</item>
         <item name="colorPrimaryDark">@color/white_smoke</item>
     </style>
 

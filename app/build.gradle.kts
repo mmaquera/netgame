@@ -53,13 +53,14 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":usecases"))
 
+    implementation("androidx.core:core-splashscreen:1.0.0")
+
+
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("androidx.core:core-ktx:1.3.2")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation("com.google.android.material:material:1.3.0")
-    /*
-    implementation ("androidx.activity:activity-ktx:1.2.3")
-    implementation("androidx.fragment:fragment-ktx:1.3.3")*/
+
     /*
     testImplementation("junit:junit:4.13")
     androidTestImplementation("androidx.test:runner:1.2.0")
