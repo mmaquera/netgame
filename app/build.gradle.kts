@@ -89,6 +89,7 @@ dependencies {
     implementation("androidx.compose.material:material:1.3.1")
     //implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.ui:ui")
+    //implementation("androidx.compose.material:materia")
     implementation("androidx.navigation:navigation-compose:2.5.3")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")

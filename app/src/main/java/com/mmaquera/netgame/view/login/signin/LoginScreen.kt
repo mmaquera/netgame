@@ -3,6 +3,7 @@ package com.mmaquera.netgame.view.login.signin
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -32,7 +33,8 @@ import kotlinx.coroutines.flow.Flow
 @Composable
 fun LoginScreen(
     viewModel: SignInViewModel = hiltViewModel(),
-    goToMainScreen: () -> Unit
+    goToMainScreen: () -> Unit,
+    goToSignUpScreen: () -> Unit
 ) {
     HandlerEvents(effect = viewModel.effect, goToMainScreen = goToMainScreen)
     val content = LocalContext.current
@@ -40,9 +42,12 @@ fun LoginScreen(
 
     when (uiState) {
         SignInUiState.Render -> {
-            RenderLogIn { userName, password ->
-                viewModel.signInIntent(SignInIntent.SignIn(userName, password))
-            }
+            RenderLogIn(
+                signInOnClick = { userName, password ->
+                    viewModel.signInIntent(SignInIntent.SignIn(userName, password))
+                },
+                goToSignUp = goToSignUpScreen
+            )
         }
         SignInUiState.Authenticate -> {
             viewModel.goToMainEvent(SignInEffect.GoToMain)
@@ -55,9 +60,12 @@ fun LoginScreen(
             Loading()
         }
         SignInUiState.UnAuthorized -> {
-            RenderLogIn { userName, password ->
-                viewModel.signInIntent(SignInIntent.SignIn(userName, password))
-            }
+            RenderLogIn(
+                signInOnClick = { userName, password ->
+                    viewModel.signInIntent(SignInIntent.SignIn(userName, password))
+                },
+                goToSignUp = goToSignUpScreen
+            )
             Toast.makeText(content, "UnAuthorized", Toast.LENGTH_SHORT).show()
         }
     }
@@ -74,7 +82,8 @@ private fun HandlerEvents(effect: Flow<SignInEffect>, goToMainScreen: () -> Unit
 
 @Composable
 private fun RenderLogIn(
-    signInOnClick: (userName: String, password: String) -> Unit
+    signInOnClick: (userName: String, password: String) -> Unit,
+    goToSignUp: () -> Unit
 ) {
     ConstraintLayout(
         modifier = Modifier
@@ -146,6 +155,9 @@ private fun RenderLogIn(
                             start.linkTo(verticalMiddleGuideLine)
                             top.linkTo(parent.top)
                             end.linkTo(parent.end)
+                        }
+                        .clickable {
+                            goToSignUp.invoke()
                         }
                         .height(45.dp)
                         .wrapContentHeight(align = Alignment.CenterVertically),

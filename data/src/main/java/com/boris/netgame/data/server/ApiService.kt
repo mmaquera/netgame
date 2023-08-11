@@ -6,8 +6,12 @@ import com.boris.netgame.data.model.response.Credentials
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-interface ApiService{
+interface ApiService {
 
     @POST("/api/v1/authorize")
     suspend fun authorize(@Body authorize: Authorize): Response<Credentials>
+
+
+    //suspend fun signUp(): Response<>
+
 }

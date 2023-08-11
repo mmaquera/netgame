@@ -4,8 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.mmaquera.netgame.view.login.signin.LoginScreen
 import com.mmaquera.netgame.ui.screen.MainScreen
+import com.mmaquera.netgame.view.login.signin.LoginScreen
+import com.mmaquera.netgame.view.login.signup.SignUpScreen
 
 @Composable
 fun Navigation() {
@@ -16,14 +17,19 @@ fun Navigation() {
         startDestination = "login"
     ) {
         composable("login") {
-            LoginScreen {
-                navController.navigate("main")
-            }
+            LoginScreen(
+                goToMainScreen = { navController.navigate("main") },
+                goToSignUpScreen = { navController.navigate("signUp") }
+            )
         }
         composable("main") {
             MainScreen {
                 navController.popBackStack()
-                //navController.navigate("login")
+            }
+        }
+        composable("signUp") {
+            SignUpScreen {
+                navController.popBackStack()
             }
         }
     }
